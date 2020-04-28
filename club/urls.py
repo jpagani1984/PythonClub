@@ -5,4 +5,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    path('', views.index, name='index'),
+    path('gettypes/', views.gettypes, name='types'),
 ]
