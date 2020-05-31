@@ -1,6 +1,6 @@
 from django.test import TestCase
-from .models import Product, ProductType, Review
-from .views import index, gettypes, getproducts
+from .models import Meeting, MeetingType, Review
+from .views import index, gettypes, getmeetings
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -36,3 +36,14 @@ def test_discount(self):
     def test_number_of_reviews(self):
         reviews=Review.objects.filter(meeting=self.meeting).count()
         self.assertEqual(reviews, 2)
+class ProductTypeForm(forms.ModelForm):
+    class Meta:
+        model=MeetingType
+        fields='__all__'
+
+def test_typeform_minus_descript(self):
+        form=MeetingTypeForm(data={'typename': "type1"})
+        self.assertTrue(form.is_valid())
+def test_typeform_empty(self):
+        form=MeetingTypeForm(data={'typename': ""})
+        self.assertFalse(form.is_valid())
