@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul class="nav navbar-nav">
+    <li><a href="{% url 'types' %}">Product Types</a></li>
+    <li><a href="{% url 'meetings' %}">Meetings</a></li>
+    <li><a href="{% url 'newmeeting' %}">Add Meeting</a></li>
+</ul>
+<h2>Add Meeting</h2>
+<form method='POST' class="post-form">
+<table class='table'>
+    
+        {% csrf_token %}
+        {{ form.as_table }}
+    
+
+</table>
+<button type="submit" class="save btn btn-default">
+    Save
+</button>
+</form>
+{% endblock %}
