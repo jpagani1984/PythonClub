@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul class="nav navbar-nav">
+      <li><a href="{% url 'types' %}">Meeting Types</a></li>
+       <li><a href="{% url 'meetings' %}">Meetings</a></li>
+               
+ </ul>
+<h2>Meetings</h2>
+<table class="table">
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+  </tr>
+  {% for m in meetings_list %}
+    <tr>
+        <td><a href="{% url 'productdetails' id=m.id %}">{{m.meetingname}}</a></td>
+        <td> {{m.meetingname}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}
