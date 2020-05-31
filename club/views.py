@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import MeetingType, Meeting, Review
+from .forms import ProductForm
 
 def index (request):
     return render(request, 'club/index.html')
@@ -20,3 +21,15 @@ def meetingdetails(request, id):
         'reviews' : reviews,
     }
     return render(request, 'club/meetingdetails.html', context=context)
+
+def newMeeting(request):
+     form=MeetingForm
+     if request.method=='POST':
+          form=MeetingForm(request.POST)
+          if form.is_valid():
+               post=form.save(commit=True)
+               post.save()
+               form=MeetingForm()
+     else:
+          form=MeetingForm()
+     return render(request, 'club/newmeeting.html', {'form': form})
